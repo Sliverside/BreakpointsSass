@@ -67,10 +67,18 @@
 // | 2.map deep delete ====================================================== \\
 
 @function delete($map, $keys...) {
-    $maps: ($map,);
     $length: length($keys);
-    $result: null;
+    $temp: ();
+    $result: ();
+    $new-keys: ();
+    @for $i from 2 through $length {
+      $new-keys: join($new-keys, nth($keys, $i));
+    }
     @each $k, $v in $map {
-      @if $k !=
+      @if $k != nth($keys, 1) {
+        $resukt: map-merge($result, ($k:$v));
+      }@else {
+        $temp: delete()
+      }
     }
 }
