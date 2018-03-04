@@ -1,57 +1,17 @@
 /*
-Error: Invalid CSS after "      @if $k !=": expected expression (e.g. 1px, bold), was "}"
-        on line 75 of C:/xampp/htdocs/lab/breakpointsSass/utilities/_functions.scss
-        from line 1 of C:\xampp\htdocs\lab\breakpointsSass\example\style.scss
+Error: ("max-width": false, "min-width": 1000px, "values": ("length": 100px)), ("max-width": false, "min-width": 1000px, "values": ("width": 10px)), ("max-width": 1000px, "min-width": 600px, "values": ("width": 5px)), ("max-width": false, "min-width": 1200px, "values": ("radius": 0)), ("max-width": 1200px, "min-width": false, "values": ("radius": 50px))
+        on line 57 of C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss
 
-70:     $maps: ($map,);
-71:     $length: length($keys);
-72:     $result: null;
-73:     @each $k, $v in $map {
-74:       @if $k !=
-75:     }
-76: }
+52:     }
+53:   }
+54:   @return $breakpoints;
+55: }
+56: 
+57: @error add-bp-vars($traits);
 
 Backtrace:
-C:/xampp/htdocs/lab/breakpointsSass/utilities/_functions.scss:75
-C:\xampp\htdocs\lab\breakpointsSass\example\style.scss:1
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1278:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/lexer.rb:231:in `expected!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:723:in `assert_expr'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:280:in `eq_or_neq'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:272:in `and_expr'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:272:in `or_expr'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:473:in `space'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:414:in `interpolation'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:338:in `expr'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:721:in `assert_expr'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/parser.rb:68:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1134:in `sass_script'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:329:in `if_directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:234:in `special_directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:209:in `directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:697:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:686:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:678:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:319:in `each_directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:234:in `special_directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:209:in `directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:695:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:678:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:272:in `function_directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:234:in `special_directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:209:in `directive'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:696:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:137:in `stylesheet'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:41:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:414:in `_to_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:321:in `to_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:327:in `block in visit_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:88:in `block in with_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:88:in `with_import'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:326:in `visit_import'
+C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss:57
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:228:in `visit_error'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
@@ -84,4 +44,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Invalid CSS after \"      @if $k !=\": expected expression (e.g. 1px, bold), was \"}\"\A         on line 75 of C:/xampp/htdocs/lab/breakpointsSass/utilities/_functions.scss\A         from line 1 of C:\xampp\htdocs\lab\breakpointsSass\example\style.scss\A \A 70:     $maps: ($map,);\A 71:     $length: length($keys);\A 72:     $result: null;\A 73:     @each $k, $v in $map {\A 74:       @if $k !=\A 75:     }\A 76: }"; }
+  content: "Error: (\"max-width\": false, \"min-width\": 1000px, \"values\": (\"length\": 100px)), (\"max-width\": false, \"min-width\": 1000px, \"values\": (\"width\": 10px)), (\"max-width\": 1000px, \"min-width\": 600px, \"values\": (\"width\": 5px)), (\"max-width\": false, \"min-width\": 1200px, \"values\": (\"radius\": 0)), (\"max-width\": 1200px, \"min-width\": false, \"values\": (\"radius\": 50px))\A         on line 57 of C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss\A \A 52:     }\A 53:   }\A 54:   @return $breakpoints;\A 55: }\A 56: \A 57: @error add-bp-vars($traits);"; }

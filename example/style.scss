@@ -1,10 +1,13 @@
 @import '../utilities/functions';
 @import '../breakpointsSass';
 
+$V:();
+$BPS:();
+
 $traits: ( '#name#' : 'traits',
   'length': (
     ('value': 100px, 'max-width':  false, 'min-width': 1000px),
-    ('value':  50px, 'max-width': 1000px, 'min-width': 600px),
+    // ('value':  50px, 'max-width': 1000px, 'min-width': 600px),
   ),
   'width': (
     ('value': 10px, 'max-width':  false, 'min-width': 1000px),
@@ -14,13 +17,41 @@ $traits: ( '#name#' : 'traits',
     ('value':    0, 'max-width':  false, 'min-width': 1200px),
     ('value': 50px, 'max-width': 1200px, 'min-width': false),
   ),
-  'color': red,
+  'color': #000,
 );
-
+@function add-bp-vars-loop($breakpoints, $new, $var-name) {
+  $value: map-get($new, 'value');
+  $new: delete($new, ('value'));
+  $temp: ();
+  @each $breakpoint in $breakpoints{
+    $temp: delete($breakpoint, ('values'));
+  }
+  @if $temp == () {$temp: null}
+  @if index($temp, $new) == null and $temp != $breakpoints {
+    $breakpoints: append($breakpoints, map-merge($new, ('values':($var-name: $value))), comma);
+  }@else {
+    @each $breakpoint in $breakpoints {
+      @if delete($breakpoint, 'values') == $new {
+        $breakpoint: set($breakpoint, 'values', map-merge(map-get($breakpoint, 'values'),($var-name: $value)));
+      }
+    }
+  }
+  @return $breakpoints;
+}
 @function add-bp-vars($map) {
   $name: get($map '#name#');
+  $map: delete($map, ('#name#'));
   $breakpoints: ();
-  @each $var, $value in $map {
-
+  @each $var, $values in $map {
+    @if type-of($values) == list {
+      @each $breakpoint in $values {
+        $breakpoints: add-bp-vars-loop($breakpoints, $breakpoint, $var);
+      }
+    }@else if type-of($values) == map{
+      $breakpoints: add-bp-vars-loop($breakpoints, $values, $var);
+    }
   }
+  @return $breakpoints;
 }
+
+@error add-bp-vars($traits);
