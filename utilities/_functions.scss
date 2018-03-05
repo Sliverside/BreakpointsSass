@@ -64,13 +64,35 @@
   @return $result;
 }
 
+$mymap:(
+  'key1': 'un',
+  'key2': 'deux',
+  'key3': 'trois',
+  'nestedmap': (
+    'sub-key1': 'zero virgule un',
+    'sub-key2': 'zero virgule deux',
+    'sub-key3': 'zero virgule trois',
+    'sub-nestedmap': (
+      'sub-sub-key1': 'zero virgule zero un',
+      'sub-sub-key2': 'zero virgule zero deux',
+      'sub-sub-key3': 'zero virgule zero trois',
+    ),
+  ),
+);
+
+@error set($mymap, ('nestedmap', 'sub-nestedmap', 'sub-sub-key3'), 'test');
+
 // | 2.map deep delete ====================================================== \\
 
 @function delete($map, $keys...) {
-    $maps: ($map,);
-    $length: length($keys);
-    $result: null;
-    @each $k, $v in $map {
-      @if $k !=
+  $length: length($keys);
+  $result: ();
+  @each $k, $v in $map {
+    @if $k != nth($keys, 1) {
+      $result: set($result, $k, $v);
     }
+    @else {
+
+    }
+  }
 }
