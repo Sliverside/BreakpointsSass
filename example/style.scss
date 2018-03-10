@@ -1,2 +1,70 @@
 @import '../utilities/functions';
 @import '../breakpointsSass';
+
+$this: ();
+
+@function var($var-name) {
+  @return if(get($this, $var-name), get($this, $var-name), null);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+.col {
+  font-size: 0;
+  line-height: 0;
+  > div {
+    position: relative;
+    display: inline-block;
+    width: #{(100% / 3)};
+    min-height: 100vh;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+  }
+}
+
+$grospoints: (
+  '#default#': (
+    'size': (
+      ('value' : 100px),
+      ('value' : 300px, 'min': 1500px),
+      ('value' : 400px, 'max': 1000px)
+    ),
+    'radius': 100px,
+    'color': red,
+  ),
+  'bleu': (
+    'size': 120px,
+    'radius': 100px,
+    'color': hsl(210, 100%, 55%),
+  ),
+  'violet': (
+    'size': 140px,
+    'radius': 100px,
+    'color': hsl(282, 62%, 39%),
+  ),
+);
+
+@each $name, $grospoint in $grospoints {
+  $this: $grospoint;
+  $name: if($name == "#default#", '.grospoint', '.grospoint.grospoint__' + $name);
+  #{$name} {
+    background-color: var('color');
+    border-radius: var('radius');
+    width: var('size');
+    height: var('size');
+  }
+}
+
+.grospoint {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+}
