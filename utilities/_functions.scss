@@ -64,7 +64,7 @@
   @return $result;
 }
 
-// | 2.map deep delete ================================================ \\
+// | 2.map deep delete ====================================================== \\
 
 @function delete($map, $keys, $count: 1, $length: false) {
   @if $length == false {
@@ -93,7 +93,7 @@
   @return $result;
 }
 
-// | 3.list delete ===========================+======================== \\
+// | 3.list delete ========================================================== \\
 
 @function remove($list, $value, $recursive: false) {
   $result: ();
@@ -107,4 +107,48 @@
   }
 
   @return $result;
+}
+
+// | 4.add breakpoints vars (loop) ========================================== \\
+
+@function add-bp-vars-loop($breakpoints, $new, $var-name) {
+  $value: map-get($new, 'value');
+  $new-breakpoint: delete($new, 'value');
+  $finded: false;
+  $temp: ();
+  $values: ();
+  @each $breakpoint in $breakpoints {
+    @if type-of($breakpoint) == list {@error $breakpoints;}
+    @if map-get($breakpoint, 'breakpoint') == $new-breakpoint {
+      $finded: true;
+      $breakpoint: map-merge($breakpoint, ('values': (set(get($breakpoint, 'values'), $var-name, $value))));
+    }
+    $temp: append($temp, $breakpoint);
+  }
+  @if $finded {
+    $breakpoints: $temp;
+  }@else {
+    $breakpoints: append($breakpoints, ('breakpoint': $new-breakpoint, 'values': ($var-name: $value)));
+  }
+  @return $breakpoints;
+}
+
+// | 4.add breakpoints vars ================================================= \\
+
+@function add-bp-vars($map) {
+  $name: get($map '#name#');
+  $map: delete($map, ('#name#'));
+  $breakpoints: ();
+  @each $var-name, $properties in $map {
+    @if type-of($properties) == map { // if there is only one breakpoint
+      $breakpoints: add-bp-vars-loop($breakpoints, $properties, $var-name);
+    }@else if type-of($properties) == list { // if there is various one breakpoint
+      @each $breakpoint in $properties { // if there is no breakpoit
+        $breakpoints: add-bp-vars-loop($breakpoints,  $breakpoint, $var-name);
+      }
+    }@else {
+      $breakpoints: add-bp-vars-loop($breakpoints, ('value': $properties, 'max-width':  false, 'min-width': false), $var-name);
+    }
+  }
+  @return $breakpoints;
 }
