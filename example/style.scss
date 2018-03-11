@@ -1,12 +1,6 @@
 @import '../utilities/functions';
 @import '../breakpointsSass';
 
-$this: ();
-
-@function var($var-name) {
-  @return if(get($this, $var-name), get($this, $var-name), null);
-}
-
 *,
 *::before,
 *::after {
@@ -29,14 +23,18 @@ body {
   }
 }
 
-$grospoints: (
+$grospoints: ( '#name#': 'grospoints',
   '#default#': (
     'size': (
-      ('value' : 100px),
-      ('value' : 300px, 'min': 1500px),
-      ('value' : 400px, 'max': 1000px)
+      ('value' : 100px, 'max': false, 'min': false),
+      ('value' : 300px,'max': false, 'min': 1500px),
+      ('value' : 400px, 'max': 1000px, 'min': false),
     ),
-    'radius': 100px,
+    'radius': (
+      ('value': 800px),
+      ('value': 0px, 'max': 1000px, 'min': 800px),
+      ('value': 10px, 'min': 1200px),
+    ),
     'color': red,
   ),
   'bleu': (
@@ -51,14 +49,23 @@ $grospoints: (
   ),
 );
 
-@each $name, $grospoint in $grospoints {
+$BPS: add-bp-vars($grospoints);
+@each $name, $grospoint in get($BPS, 'grospoints') {
   $this: $grospoint;
   $name: if($name == "#default#", '.grospoint', '.grospoint.grospoint__' + $name);
   #{$name} {
-    background-color: var('color');
-    border-radius: var('radius');
-    width: var('size');
-    height: var('size');
+    @each $bp in $grospoint{
+      $this: get($bp, 'breakpoint');
+      @include BPS(this('max'), this('min')) {
+        $this: get($bp, 'values');
+        @if this('color') {background-color: this('color');}
+        @if this('radius') {border-radius: this('radius');}
+        @if this('size') {
+          width: this('size');
+          height: this('size');
+        }
+      }
+    }
   }
 }
 

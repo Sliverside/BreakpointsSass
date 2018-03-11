@@ -1,80 +1,58 @@
-/*
-Error: ("value": 100px) isn't a valid CSS value.
-        on line 60 of C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
 
-55:   $this: $grospoint;
-56:   $name: if($name == "#default#", '.grospoint', '.grospoint.grospoint__' + $name);
-57:   #{$name} {
-58:     background-color: var('color');
-59:     border-radius: var('radius');
-60:     width: var('size');
-61:     height: var('size');
-62:   }
-63: }
-64: 
-65: .grospoint {
+body {
+  margin: 0; }
 
-Backtrace:
-C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss:60
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/script/value/map.rb:52:in `to_s'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/script/value/list.rb:58:in `block in to_s'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/script/value/list.rb:58:in `map'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/script/value/list.rb:58:in `to_s'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:403:in `visit_prop'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `map'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:244:in `block (3 levels) in visit_each'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:244:in `map'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:244:in `block (2 levels) in visit_each'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:236:in `map'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:236:in `block in visit_each'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:235:in `visit_each'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Mes Programmes/koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Mes Programmes/koala/bin/sass:22:in `load'
-C:/Mes Programmes/koala/bin/sass:22:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: (\"value\": 100px) isn't a valid CSS value.\A         on line 60 of C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss\A \A 55:   $this: $grospoint;\A 56:   $name: if($name == \"#default#\", '.grospoint', '.grospoint.grospoint__' + $name);\A 57:   #{$name} {\A 58:     background-color: var('color');\A 59:     border-radius: var('radius');\A 60:     width: var('size');\A 61:     height: var('size');\A 62:   }\A 63: }\A 64: \A 65: .grospoint {"; }
+.col {
+  font-size: 0;
+  line-height: 0; }
+  .col > div {
+    position: relative;
+    display: inline-block;
+    width: 33.3333333333%;
+    min-height: 100vh;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999; }
+
+.grospoint {
+  background-color: red;
+  border-radius: 800px;
+  width: 100px;
+  height: 100px; }
+  @media (min-width: 1500px) {
+    .grospoint {
+      width: 300px;
+      height: 300px; } }
+  @media (max-width: 999.95px) {
+    .grospoint {
+      width: 400px;
+      height: 400px; } }
+  @media (max-width: 800px) and (min-width: 800px) {
+    .grospoint {
+      border-radius: 0px; } }
+  @media (min-width: 1200px) {
+    .grospoint {
+      border-radius: 10px; } }
+
+.grospoint.grospoint__bleu {
+  background-color: #1a8cff;
+  border-radius: 100px;
+  width: 120px;
+  height: 120px; }
+
+.grospoint.grospoint__violet {
+  background-color: #7c26a1;
+  border-radius: 100px;
+  width: 140px;
+  height: 140px; }
+
+.grospoint {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%); }
+
+/*# sourceMappingURL=style.css.map */
