@@ -1,14 +1,14 @@
 @import 'utilities/functions';
 
 $BPS: () !global;
-$this: ();
+$this: () !global;
 
 // | 1.breakpoint =========================================================== \\
 
   @mixin BPS($max, $min: false) {
     $max: if($max, $max - 0.05px, $max);
     @if $max != false and $min != false {
-      @media (max-width: $min) and (min-width: $min) {@content;}
+      @media (max-width: $max) and (min-width: $min) {@content;}
     }@else if $max != false {
       @media (max-width: $max) {@content;}
     }@else if $min != false {
@@ -16,37 +16,48 @@ $this: ();
     }@else { @content; }
   }
 
-// | 1.this ================================================================= \\
+// | 2.this ================================================================= \\
 
   @function this($var-name) {
     @return if(get($this, $var-name) != null, get($this, $var-name), null);
   }
 
-// | 2.add breakpoints vars (loop) ========================================== \\
+// | 3.add breakpoints vars (loop) ========================================== \\
 
 @function add-bp-vars-loop($breakpoints, $new, $var-name) {
   $new: map-merge(('max':  false, 'min': false), $new);
+  $this: $new !global;
+  $global: if(this('max') == false and this('min') == false, ($var-name: this('value')), null);
   $value: map-get($new, 'value');
   $new-breakpoint: delete($new, 'value');
   $finded: false;
-  $temp: ();
   $values: ();
+  $temp: ();
   @each $breakpoint in $breakpoints {
-    @if map-get($breakpoint, 'breakpoint') == $new-breakpoint {
+    $this: $breakpoint !global;
+    @if this('global') and $global {
+      $global: map-merge(this('global'), $global);
+    }@else if this('global') {
+      $global: this('global');
+    }
+  }
+  @each $breakpoint in $breakpoints {
+    $this: $breakpoint !global;
+    $breakpoint: map-merge($breakpoint, ('global': $global));
+    @if this('breakpoint') == $new-breakpoint {
       $finded: true;
-      $breakpoint: map-merge($breakpoint, ('values': (set(get($breakpoint, 'values'), $var-name, $value))));
+      $breakpoint: map-merge($breakpoint, ('values': (set(this('values'), $var-name, $value))));
     }
     $temp: append($temp, $breakpoint);
   }
-  @if $finded {
-    $breakpoints: $temp;
-  }@else {
-    $breakpoints: append($breakpoints, ('breakpoint': $new-breakpoint, 'values': ($var-name: $value)));
+  $breakpoints: $temp;
+  @if $finded == false {
+    $breakpoints: append($breakpoints, ('breakpoint': $new-breakpoint, 'values': ($var-name: $value), 'global': $global));
   }
   @return $breakpoints;
 }
 
-// | 3.add breakpoints vars ================================================= \\
+// | 4.add breakpoints vars ================================================= \\
 
 @function add-bp-vars($map, $object: true, $object-child: false) {
   $name: get($map, '#name#');
@@ -61,7 +72,7 @@ $this: ();
       @if type-of($properties) == map { // if there is only one breakpoint
         $breakpoints: add-bp-vars-loop($breakpoints, $properties, $var-name);
       }@else if type-of($properties) == list { // if there is various one breakpoint
-        @each $breakpoint in $properties { // if there is no breakpoit
+        @each $breakpoint in $properties { // if there is no breakpoint
           $breakpoints: add-bp-vars-loop($breakpoints,  $breakpoint, $var-name);
         }
       }@else {

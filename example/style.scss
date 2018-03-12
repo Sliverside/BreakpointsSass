@@ -25,10 +25,10 @@ body {
 
 $grospoints: ( '#name#': 'grospoints',
   '#default#': (
-    'size': (
-      ('value' : 100px, 'max': false, 'min': false),
-      ('value' : 300px,'max': false, 'min': 1500px),
-      ('value' : 400px, 'max': 1000px, 'min': false),
+    'size':(
+    ('value': 150px, 'min': 1000px),
+    ('value': 50px, 'min': 800px, 'max': 1000px),
+    ('value': 25px, 'min': 500px, 'max': 800px),
     ),
     'radius': (
       ('value': 800px),
@@ -48,16 +48,15 @@ $grospoints: ( '#name#': 'grospoints',
     'color': hsl(282, 62%, 39%),
   ),
 );
-
 $BPS: add-bp-vars($grospoints);
 @each $name, $grospoint in get($BPS, 'grospoints') {
-  $this: $grospoint;
+  $this: $grospoint !global;
   $name: if($name == "#default#", '.grospoint', '.grospoint.grospoint__' + $name);
   #{$name} {
     @each $bp in $grospoint{
-      $this: get($bp, 'breakpoint');
+      $this: get($bp, 'breakpoint') !global;
       @include BPS(this('max'), this('min')) {
-        $this: get($bp, 'values');
+        $this: get($bp, 'values') !global;
         @if this('color') {background-color: this('color');}
         @if this('radius') {border-radius: this('radius');}
         @if this('size') {
