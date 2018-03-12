@@ -1,57 +1,77 @@
 @import '../utilities/functions';
 @import '../breakpointsSass';
 
-$V:();
-$BPS:();
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-$traits: ( '#name#' : 'traits',
-  'length': (
-    ('value': 100px, 'max-width':  false, 'min-width': 1000px),
-    // ('value':  50px, 'max-width': 1000px, 'min-width': 600px),
+body {
+  margin: 0;
+}
+.col {
+  font-size: 0;
+  line-height: 0;
+  > div {
+    position: relative;
+    display: inline-block;
+    width: #{(100% / 3)};
+    min-height: 100vh;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+  }
+}
+
+$grospoints: ( '#name#': 'grospoints',
+  '#default#': (
+    'size': (
+      ('value' : 100px, 'max': false, 'min': false),
+      ('value' : 300px,'max': false, 'min': 1500px),
+      ('value' : 400px, 'max': 1000px, 'min': false),
+    ),
+    'radius': (
+      ('value': 800px),
+      ('value': 0px, 'max': 1000px, 'min': 800px),
+      ('value': 10px, 'min': 1200px),
+    ),
+    'color': red,
   ),
-  'width': (
-    ('value': 10px, 'max-width':  false, 'min-width': 1000px),
-    ('value':  5px, 'max-width': 1000px, 'min-width': 600px),
+  'bleu': (
+    'size': 120px,
+    'radius': 100px,
+    'color': hsl(210, 100%, 55%),
   ),
-  'radius': (
-    ('value':    0, 'max-width':  false, 'min-width': 1200px),
-    ('value': 50px, 'max-width': 1200px, 'min-width': false),
+  'violet': (
+    'size': 140px,
+    'radius': 100px,
+    'color': hsl(282, 62%, 39%),
   ),
-  'color': #000,
 );
-@function add-bp-vars-loop($breakpoints, $new, $var-name) {
-  $value: map-get($new, 'value');
-  $new: delete($new, ('value'));
-  $temp: ();
-  @each $breakpoint in $breakpoints{
-    $temp: delete($breakpoint, ('values'));
-  }
-  @if $temp == () {$temp: null}
-  @if index($temp, $new) == null and $temp != $breakpoints {
-    $breakpoints: append($breakpoints, map-merge($new, ('values':($var-name: $value))), comma);
-  }@else {
-    @each $breakpoint in $breakpoints {
-      @if delete($breakpoint, 'values') == $new {
-        $breakpoint: set($breakpoint, 'values', map-merge(map-get($breakpoint, 'values'),($var-name: $value)));
+
+$BPS: add-bp-vars($grospoints);
+@each $name, $grospoint in get($BPS, 'grospoints') {
+  $this: $grospoint;
+  $name: if($name == "#default#", '.grospoint', '.grospoint.grospoint__' + $name);
+  #{$name} {
+    @each $bp in $grospoint{
+      $this: get($bp, 'breakpoint');
+      @include BPS(this('max'), this('min')) {
+        $this: get($bp, 'values');
+        @if this('color') {background-color: this('color');}
+        @if this('radius') {border-radius: this('radius');}
+        @if this('size') {
+          width: this('size');
+          height: this('size');
+        }
       }
     }
   }
-  @return $breakpoints;
-}
-@function add-bp-vars($map) {
-  $name: get($map '#name#');
-  $map: delete($map, ('#name#'));
-  $breakpoints: ();
-  @each $var, $values in $map {
-    @if type-of($values) == list {
-      @each $breakpoint in $values {
-        $breakpoints: add-bp-vars-loop($breakpoints, $breakpoint, $var);
-      }
-    }@else if type-of($values) == map{
-      $breakpoints: add-bp-vars-loop($breakpoints, $values, $var);
-    }
-  }
-  @return $breakpoints;
 }
 
-@error add-bp-vars($traits);
+.grospoint {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+}

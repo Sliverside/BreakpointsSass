@@ -1,47 +1,58 @@
-/*
-Error: ("max-width": false, "min-width": 1000px, "values": ("length": 100px)), ("max-width": false, "min-width": 1000px, "values": ("width": 10px)), ("max-width": 1000px, "min-width": 600px, "values": ("width": 5px)), ("max-width": false, "min-width": 1200px, "values": ("radius": 0)), ("max-width": 1200px, "min-width": false, "values": ("radius": 50px))
-        on line 57 of C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss
+*,
+*::before,
+*::after {
+  box-sizing: border-box; }
 
-52:     }
-53:   }
-54:   @return $breakpoints;
-55: }
-56: 
-57: @error add-bp-vars($traits);
+body {
+  margin: 0; }
 
-Backtrace:
-C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss:57
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:228:in `visit_error'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Program Files (x86)/Koala/bin/sass:22:in `load'
-C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: (\"max-width\": false, \"min-width\": 1000px, \"values\": (\"length\": 100px)), (\"max-width\": false, \"min-width\": 1000px, \"values\": (\"width\": 10px)), (\"max-width\": 1000px, \"min-width\": 600px, \"values\": (\"width\": 5px)), (\"max-width\": false, \"min-width\": 1200px, \"values\": (\"radius\": 0)), (\"max-width\": 1200px, \"min-width\": false, \"values\": (\"radius\": 50px))\A         on line 57 of C:\xampp\htdocs\lab\BreakpointsSass\example\style.scss\A \A 52:     }\A 53:   }\A 54:   @return $breakpoints;\A 55: }\A 56: \A 57: @error add-bp-vars($traits);"; }
+.col {
+  font-size: 0;
+  line-height: 0; }
+  .col > div {
+    position: relative;
+    display: inline-block;
+    width: 33.3333333333%;
+    min-height: 100vh;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999; }
+
+.grospoint {
+  background-color: red;
+  border-radius: 800px;
+  width: 100px;
+  height: 100px; }
+  @media (min-width: 1500px) {
+    .grospoint {
+      width: 300px;
+      height: 300px; } }
+  @media (max-width: 999.95px) {
+    .grospoint {
+      width: 400px;
+      height: 400px; } }
+  @media (max-width: 800px) and (min-width: 800px) {
+    .grospoint {
+      border-radius: 0px; } }
+  @media (min-width: 1200px) {
+    .grospoint {
+      border-radius: 10px; } }
+
+.grospoint.grospoint__bleu {
+  background-color: #1a8cff;
+  border-radius: 100px;
+  width: 120px;
+  height: 120px; }
+
+.grospoint.grospoint__violet {
+  background-color: #7c26a1;
+  border-radius: 100px;
+  width: 140px;
+  height: 140px; }
+
+.grospoint {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%); }
+
+/*# sourceMappingURL=style.css.map */

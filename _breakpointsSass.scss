@@ -1,3 +1,77 @@
 @import 'utilities/functions';
 
-$VARS: () !global;
+$BPS: () !global;
+$this: ();
+
+// | 1.breakpoint =========================================================== \\
+
+  @mixin BPS($max, $min: false) {
+    $max: if($max, $max - 0.05px, $max);
+    @if $max != false and $min != false {
+      @media (max-width: $min) and (min-width: $min) {@content;}
+    }@else if $max != false {
+      @media (max-width: $max) {@content;}
+    }@else if $min != false {
+      @media (min-width: $min) {@content;}
+    }@else { @content; }
+  }
+
+// | 1.this ================================================================= \\
+
+  @function this($var-name) {
+    @return if(get($this, $var-name) != null, get($this, $var-name), null);
+  }
+
+// | 2.add breakpoints vars (loop) ========================================== \\
+
+@function add-bp-vars-loop($breakpoints, $new, $var-name) {
+  $new: map-merge(('max':  false, 'min': false), $new);
+  $value: map-get($new, 'value');
+  $new-breakpoint: delete($new, 'value');
+  $finded: false;
+  $temp: ();
+  $values: ();
+  @each $breakpoint in $breakpoints {
+    @if map-get($breakpoint, 'breakpoint') == $new-breakpoint {
+      $finded: true;
+      $breakpoint: map-merge($breakpoint, ('values': (set(get($breakpoint, 'values'), $var-name, $value))));
+    }
+    $temp: append($temp, $breakpoint);
+  }
+  @if $finded {
+    $breakpoints: $temp;
+  }@else {
+    $breakpoints: append($breakpoints, ('breakpoint': $new-breakpoint, 'values': ($var-name: $value)));
+  }
+  @return $breakpoints;
+}
+
+// | 3.add breakpoints vars ================================================= \\
+
+@function add-bp-vars($map, $object: true, $object-child: false) {
+  $name: get($map, '#name#');
+  $map: delete($map, ('#name#'));
+  $breakpoints: ();
+  @if $object {
+    @each $instance-name, $instance in $map {
+      $breakpoints: set($breakpoints, $instance-name, add-bp-vars($instance, false, true));
+    }
+  }@else {
+    @each $var-name, $properties in $map {
+      @if type-of($properties) == map { // if there is only one breakpoint
+        $breakpoints: add-bp-vars-loop($breakpoints, $properties, $var-name);
+      }@else if type-of($properties) == list { // if there is various one breakpoint
+        @each $breakpoint in $properties { // if there is no breakpoit
+          $breakpoints: add-bp-vars-loop($breakpoints,  $breakpoint, $var-name);
+        }
+      }@else {
+        $breakpoints: add-bp-vars-loop($breakpoints, ('value': $properties,), $var-name);
+      }
+    }
+  }
+  @if $object-child {
+    @return $breakpoints;
+  }@else{
+    @return set($BPS, $name, $breakpoints);
+  }
+}
