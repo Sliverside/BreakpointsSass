@@ -23,7 +23,7 @@ $traits: ( '#name#' : 'traits',
   $value: map-get($new, 'value');
   $new: delete($new, ('value'));
   $temp: ();
-  @each $breakpoint in $breakpoints{ 
+  @each $breakpoint in $breakpoints{
     $temp: delete($breakpoint, ('values'));
   }
   @if $temp == () {$temp: null}
