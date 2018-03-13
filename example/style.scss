@@ -28,7 +28,7 @@ $grospoints: ( '#name#': 'grospoints',
     'size':(
     ('value': 150px, 'min': 1000px),
     ('value': 50px, 'min': 800px, 'max': 1000px),
-    ('value': 25px, 'min': 500px, 'max': 800px),
+    ('value': 25px, 'max': 800px),
     ),
     'radius': (
       ('value': 800px),
@@ -56,12 +56,12 @@ $BPS: add-bp-vars($grospoints);
     @each $bp in $grospoint{
       $this: get($bp, 'breakpoint') !global;
       @include BPS(this('max'), this('min')) {
-        $this: get($bp, 'values') !global;
-        @if this('color') {background-color: this('color');}
-        @if this('radius') {border-radius: this('radius');}
-        @if this('size') {
-          width: this('size');
-          height: this('size');
+        $this: $bp !global;
+        @if thisbp('color') {background-color: thisbp('color');}
+        @if thisbp('radius') {border-radius: thisbp('radius');}
+        @if thisbp('size') {
+          width: thisbp('size');
+          height: thisbp('size');
         }
       }
     }
