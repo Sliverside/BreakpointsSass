@@ -1,8 +1,7 @@
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 body {
   margin: 0; }
@@ -23,25 +22,21 @@ body {
   border-radius: 800px; }
   @media (min-width: 1000px) {
     .grospoint {
-      background-color: red;
       border-radius: 800px;
       width: 150px;
       height: 150px; } }
   @media (max-width: 999.95px) and (min-width: 800px) {
     .grospoint {
-      background-color: red;
       border-radius: 0px;
       width: 50px;
       height: 50px; } }
   @media (max-width: 799.95px) {
     .grospoint {
-      background-color: red;
       border-radius: 800px;
       width: 25px;
       height: 25px; } }
   @media (min-width: 1200px) {
     .grospoint {
-      background-color: red;
       border-radius: 10px; } }
 
 .grospoint.grospoint__bleu {
@@ -60,7 +55,6 @@ body {
   position: absolute;
   bottom: 50%;
   right: 50%;
-  -webkit-transform: translate(50%, 50%);
-          transform: translate(50%, 50%); }
+  transform: translate(50%, 50%); }
 
 /*# sourceMappingURL=style.css.map */

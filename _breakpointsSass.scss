@@ -22,8 +22,8 @@ $this: () !global;
     @return if(get($this, $var-name) != null, get($this, $var-name), null);
   }
 
-  @function thisbp($var-name) {
-    @return if(get($this, 'values', $var-name) != null, get($this, 'values', $var-name), if(get($this, 'global', $var-name) != null, get($this, 'global', $var-name), null));
+  @function thisbp($var-name, $global: true) {
+    @return if(get($this, 'values', $var-name) != null, get($this, 'values', $var-name), if(get($this, 'global', $var-name) != null and $global == true, get($this, 'global', $var-name), null));
   }
 
 // | 3.add breakpoints vars (loop) ========================================== \\

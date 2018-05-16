@@ -57,7 +57,7 @@ $BPS: add-bp-vars($grospoints);
       $this: get($bp, 'breakpoint') !global;
       @include BPS(this('max'), this('min')) {
         $this: $bp !global;
-        @if thisbp('color') {background-color: thisbp('color');}
+        @if thisbp('color', false) {background-color: thisbp('color');}
         @if thisbp('radius') {border-radius: thisbp('radius');}
         @if thisbp('size') {
           width: thisbp('size');
